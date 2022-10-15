@@ -53,9 +53,9 @@ namespace Labe3.Tests
             var km = new Length(2, MeasureType.km);
 
             Assert.AreEqual("10,5555555556 м/c.", (m + km).Verbose());
-            //Assert.AreEqual("38 км/ч.", (km + m).Verbose());
+            Assert.AreEqual("38 км/ч.", (km + m).Verbose());
 
-            //Assert.AreEqual("-34 км/ч.", (km - m).Verbose());
+            Assert.AreEqual("-34 км/ч.", (km - m).Verbose());
             Assert.AreEqual("9,4444444444 м/c.", (m - km).Verbose());
         }
     }

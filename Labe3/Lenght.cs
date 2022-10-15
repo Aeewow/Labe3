@@ -53,11 +53,11 @@ namespace Labe3
         public static Length operator *(Length instance, double number)
         {
             
-            return new Length(instance.value * number, instance.type); ;
+            return new Length(instance.value * number, instance.type);
         }
-        public static Length operator *(double number, Length instance)
+        public static Length operator *(Length instance1, Length instance2)
         {
-            return instance * number;
+            return instance1 * instance2.ConvertTo(instance1.type).value
         }
         public static Length operator -(Length instance, double number)
         {
