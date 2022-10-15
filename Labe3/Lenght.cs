@@ -20,6 +20,7 @@ namespace Labe3
             this.value = value;
             this.type = type;
         }
+        
         public string Verbose()
         {
             string typeVerbose = "";
@@ -40,6 +41,19 @@ namespace Labe3
             }
             return String.Format("{0} {1}", this.value, typeVerbose);
         }
+        public override bool Equals(Object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Length p = (Length)obj;
+                return (value == p.value) && (type == p.type);
+            }
+        }
+
         public static Length operator + (Length instance, double number)
         {
             var newValue = instance.value + number;
@@ -57,11 +71,11 @@ namespace Labe3
         }
         public static Length operator *(Length instance1, Length instance2)
         {
-            return instance1 * instance2.ConvertTo(instance1.type).value
+            return instance1 * instance2.ConvertTo(instance1.type).value;
         }
         public static Length operator -(Length instance, double number)
         {
-            return new Length(instance.value - number, instance.type); ;
+            return new Length(instance.value - number, instance.type); 
         }
         public static Length operator -(Length instance1, Length instance2)
         {
