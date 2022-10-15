@@ -29,7 +29,7 @@ namespace Labe3
                     typeVerbose = "м/c.";
                     break;
                 case MeasureType.km:
-                    typeVerbose = "км/c.";
+                    typeVerbose = "км/ч.";
                     break;
                 case MeasureType.kn:
                     typeVerbose = "уз.";
@@ -46,9 +46,9 @@ namespace Labe3
             var lenght = new Length(newValue, MeasureType.m);
             return lenght;
         }
-        public static Length operator + (double number, Length instance)
+        public static Length operator + (Length instance1, Length instance2)
         {
-            return instance + number;
+            return instance1 - instance2.ConvertTo(instance1.type).value;
         }
         public static Length operator *(Length instance, double number)
         {
@@ -66,6 +66,52 @@ namespace Labe3
         public static Length operator -(double number, Length instance)
         {
             return instance - number;
+        }
+        public Length ConvertTo(MeasureType newType)
+        {
+            var newValue = this.value;
+            if(this.type == MeasureType.m)
+            {
+                switch(newType)
+                {
+                    case MeasureType.m:
+                        newValue = this.value;
+                        break;
+                    case MeasureType.km:
+                        newValue = this.value / 0.2777777778;
+                        break;
+                    case MeasureType.kn:
+                        newValue = this.value / 0.514444444444;
+                        break;
+                    case MeasureType.M:
+                        newValue = this.value / 340;
+                        break;
+                }
+            }
+            else if (newType == MeasureType.m)
+            {
+                switch(this.type)
+                {
+                    case MeasureType.m:
+                        newValue = this.value;
+                        break;
+                    case MeasureType.km:
+                        newValue = this.value * 0.2777777778;
+                        break;
+                    case MeasureType.kn:
+                        newValue = this.value * 0.514444444444;
+                        break;
+                    case MeasureType.M:
+                        newValue = this.value * 340;
+                        break;
+                }
+
+            }
+            else
+            {
+                newValue = this.ConvertTo(MeasureType.m).ConvertTo(newType).value;
+            }
+            return new Length(newValue, newType);
         }
     }
 }
