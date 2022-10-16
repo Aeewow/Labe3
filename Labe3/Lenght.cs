@@ -54,16 +54,16 @@ namespace Labe3
             }
         }
 
-        public static Length operator + (Length instance, double number)
+
+        public static Length operator +(Length instance, double number)
         {
-            var newValue = instance.value + number;
-            var lenght = new Length(newValue, MeasureType.m);
-            return lenght;
+            return new Length(instance.value + number, instance.type);
         }
         public static Length operator + (Length instance1, Length instance2)
         {
             return instance1 + instance2.ConvertTo(instance1.type).value;
         }
+        
         public static Length operator *(Length instance, double number)
         {
             
@@ -80,6 +80,10 @@ namespace Labe3
         public static Length operator -(Length instance1, Length instance2)
         {
             return instance1 - instance2.ConvertTo(instance1.type).value;
+        }
+        public bool Compare(Length instance1, Length instance2)
+        {
+            return instance1.value > instance2.value;
         }
         public Length ConvertTo(MeasureType newType)
         {
