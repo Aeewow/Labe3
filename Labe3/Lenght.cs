@@ -19,8 +19,7 @@ namespace Labe3
         {
             this.value = value;
             this.type = type;
-        }
-        
+        }        
         public string Verbose()
         {
             string typeVerbose = "";
@@ -53,8 +52,6 @@ namespace Labe3
                 return (value == p.value) && (type == p.type);
             }
         }
-
-
         public static Length operator +(Length instance, double number)
         {
             return new Length(instance.value + number, instance.type);
