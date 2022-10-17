@@ -31,7 +31,7 @@ namespace Labe3.Tests
         {
             var length = new Length(3, MeasureType.m);
             length = length - 2;
-            Assert.AreEqual("1 м/c.", length.Verbose());
+            Assert.AreEqual(new Length(1, MeasureType.m), length);
         }
         [TestMethod()]
         public void ConvertToTest()
@@ -54,7 +54,7 @@ namespace Labe3.Tests
             Length Test1 = new Length(10, MeasureType.km);
             Length Test2 = new Length(2, MeasureType.m);
             Length Test3 = Test1 + Test2;
-            Assert.AreEqual(new Length(17.565555555, MeasureType.km), Test3);
+            Assert.AreEqual(new Length(17.199999999424, MeasureType.km), Test3);
 
 
 
@@ -65,9 +65,15 @@ namespace Labe3.Tests
             Assert.AreEqual("9,4444444444 м/c.", (m - km).Verbose());*/
         }
         [TestMethod()]
+        public void AddMultiplicateTest()
+        {
+            var length = new Length(4, MeasureType.m);
+            length = length * 2;
+            Assert.AreEqual(new Length(8, MeasureType.m), length);
+        }
+        [TestMethod()]
         public void AddСomparisonKmMetersTest2()
         {
-
             var firstSpeed = new Length(10, MeasureType.m);
             var secondSpeed = new Length(37, MeasureType.km);
             var result = firstSpeed.Compare(firstSpeed, secondSpeed);

@@ -12,7 +12,6 @@ namespace Labe3
                 "уз.",
                  "М",
             };
-
             cmbFirstType.DataSource = new List<string>(measureItems);
             cmbSecondType.DataSource = new List<string>(measureItems);
             cmbResultType.DataSource = new List<string>(measureItems);
@@ -70,8 +69,8 @@ namespace Labe3
                         sumLength = firstLength * secondLength;
                         break;
                     /*case "=":
-                        sumLength = Compare()
-                    default:*/
+                        sumLength = Compare()*/
+                    default:
                         sumLength = new Length(0, MeasureType.m);
                         break;
                 }
